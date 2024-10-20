@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class ConversorMoedas {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Taxas de câmbio fictícias para o exemplo
+        double taxaDolar = 5.25; // 1 USD = 5.25 BRL
+        double taxaEuro = 6.00;   // 1 EUR = 6.00 BRL
+        
+        System.out.println("Conversor de Moedas");
+        System.out.println("Escolha a moeda de origem:");
+        System.out.println("1. Reais (BRL)");
+        System.out.println("2. Dólares (USD)");
+        System.out.println("3. Euros (EUR)");
+        
+        int moedaOrigem = scanner.nextInt();
+        System.out.println("Escolha a moeda de destino:");
+        System.out.println("1. Reais (BRL)");
+        System.out.println("2. Dólares (USD)");
+        System.out.println("3. Euros (EUR)");
+        
+        int moedaDestino = scanner.nextInt();
+        System.out.print("Digite o valor a ser convertido: ");
+        double valor = scanner.nextDouble();
+        
+        double resultado = 0.0;
+
+        // Conversão
+        if (moedaOrigem == 1 && moedaDestino == 2) {
+            resultado = valor / taxaDolar; // BRL para USD
+        } else if (moedaOrigem == 1 && moedaDestino == 3) {
+            resultado = valor / taxaEuro; // BRL para EUR
+        } else if (moedaOrigem == 2 && moedaDestino == 1) {
+            resultado = valor * taxaDolar; // USD para BRL
+        } else if (moedaOrigem == 2 && moedaDestino == 3) {
+            resultado = (valor * taxaDolar) / taxaEuro; // USD para EUR
+        } else if (moedaOrigem == 3 && moedaDestino == 1) {
+            resultado = valor * taxaEuro; // EUR para BRL
+        } else if (moedaOrigem == 3 && moedaDestino == 2) {
+            resultado = (valor * taxaEuro) / taxaDolar; // EUR para USD
+        } else {
+            resultado = valor; // Conversão para a mesma moeda
+        }
+
+        System.out.printf("Resultado: %.2f\n", resultado);
+        
+        scanner.close();
+    }
+}
